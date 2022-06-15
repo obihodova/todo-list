@@ -1,0 +1,70 @@
+.todo-item {
+    min-height: 40px;
+    width: 451px;
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+    border-radius: 3px;
+    border: 1px solid gray;
+    background-color: white;
+    word-wrap: break-word;
+  }
+  
+  #menu {
+    height: 20px;
+    width: 20px;
+    margin: 4px 10px 0px 10px;
+  }
+  
+  .todo-item p {
+    width: 70%;
+    margin: 10px 10px;
+  }
+  
+  .icons {
+    display: flex;
+    align-items: center;
+  }
+  
+  .drop {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .dropdown-content {
+    display: block;
+    position: absolute;
+    background-color: white;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+  }
+  
+  .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  #favorite {
+    height: 20px;
+    width: 20px;
+  }
+  
+  #complited {
+      text-decoration: line-through;
+  }
+  
+  #edit {
+      width: 451px;
+      background-color: white;
+      margin-top: 10px;
+      border-radius: 3px;
+      border: 1px solid gray;
+      background-color: white; 
+      padding: 0 10px;
+      box-sizing: border-box;
+  }

@@ -1,0 +1,15 @@
+.filter {
+    margin-top: 45px;
+    width: 453px;
+    display: flex;
+    justify-content: end;
+  }
+  
+  select {
+    display: block;
+    align-items: flex-end;
+  }
+  
+  select option {
+    direction: ltr;
+  }
