@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import "./InputWindow.css";
 import { useDispatch, useSelector } from "react-redux";
-import { addTask } from "../../store/todoReducer" ; 
-import { addError, resetError } from "../../store/errorReducer" ;
-import { useTypedSelector } from "../../hooks/useTypedSelector"
+import { addTask } from "../../store/todoReducer";
+import { addError, resetError } from "../../store/errorReducer";
+import { useTypedSelector } from "../../hooks/useTypedSelector";
 
 function InputWindow() {
   const [text, setText] = useState("");
@@ -14,11 +14,11 @@ function InputWindow() {
     if (!isError && text.trim()) {
       let id = Math.random();
       dispatch(addTask(id, text));
-      setText('');
+      setText("");
     }
   };
 
-  const handleFormInput = (e: any) => {
+  const handleFormInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setText(e.target.value);
     if (e.target.value.length > 160) {
       dispatch(addError(e.target.value));

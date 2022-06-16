@@ -1,3 +1,5 @@
+import { type ActionType } from "./";
+
 export type TodoState = Record<
   string,
   {
@@ -18,12 +20,7 @@ export const ADD_COMPLITED = "ADD_COMPLITED";
 export const RESET_COMPLITED = "RESET_COMPLITED";
 export const REMOVE_TASK = "REMOVE_TASK";
 
-export type TodoAction = {
-  type: string;
-  payload?: any;
-};
-
-export const todoReducer = (state = defaultState, action: TodoAction) => {
+export const todoReducer = (state = defaultState, action: ActionType) => {
   switch (action.type) {
     case ADD_TASK: {
       const { id, description } = action.payload;

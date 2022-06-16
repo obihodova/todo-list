@@ -67,7 +67,7 @@ const TodoItem: React.FC<TodoItemProps> = ({
     setShow(false);
   };
 
-  const onCloseEdit = (e: any) => {
+  const onCloseEdit = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
       setEdit(false);
       // @ts-ignore

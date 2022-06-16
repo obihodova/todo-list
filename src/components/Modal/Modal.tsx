@@ -8,7 +8,7 @@ interface ModalProps {
   id: number;
   description: string;
   visible: boolean;
-  onClose: any;
+  onClose: () => void;
 }
 
 const Modal: React.FC<ModalProps> = ({

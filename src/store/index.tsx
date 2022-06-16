@@ -3,7 +3,7 @@ import { composeWithDevTools } from "@redux-devtools/extension";
 import thunk from "redux-thunk";
 import { todoReducer } from "./todoReducer";
 import { errorReducer } from "./errorReducer";
-import { filterReducer } from "./filterReduser" ;
+import { filterReducer } from "./filterReduser";
 
 const rootReducer = combineReducers({
   todo: todoReducer,
@@ -17,3 +17,8 @@ export const store = createStore(
 );
 
 export type RootState = ReturnType<typeof rootReducer>;
+
+export type ActionType = {
+  type: string;
+  payload?: any;
+};

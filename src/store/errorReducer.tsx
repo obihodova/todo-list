@@ -1,22 +1,19 @@
+import { type ActionType } from "./";
+
 const defaultState = { error: "" };
 
 export const ADD_ERROR = "ADD_ERROR";
 export const RESET_ERROR = "RESET_ERROR";
 
-
-interface errorAction {
-  type: string;
-  payload?: any;
-}
-
-
-export const errorReducer = (state = defaultState, action: errorAction) => {
+export const errorReducer = (state = defaultState, action: ActionType) => {
   switch (action.type) {
     case ADD_ERROR: {
       const { value } = action.payload;
       console.log(value.length);
       return {
-        error: `превышен лимит текста задачи на ${-(160 - value.length)} символов`,
+        error: `превышен лимит текста задачи на ${-(
+          160 - value.length
+        )} символов`,
       };
     }
 
@@ -37,5 +34,4 @@ export const addError = (value: string) => ({
 
 export const resetError = () => ({
   type: RESET_ERROR,
-  
 });

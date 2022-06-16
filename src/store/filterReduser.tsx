@@ -1,4 +1,4 @@
-import { type RootState } from "./";
+import { type RootState, type ActionType } from "./";
 
 export const CHANGE_FILTER = "CHANGE_FILTER";
 export const CHANGE_FAVORITE_MODE = "CHANGE_FAVORITE_MODE";
@@ -18,7 +18,7 @@ const defaultState: FilterState = {
   filter: FilterTypes.All,
 };
 
-export const filterReducer = (state = defaultState, action: any) => {
+export const filterReducer = (state = defaultState, action: ActionType) => {
   switch (action.type) {
     case CHANGE_FILTER: {
       const filter = action.payload.filter;

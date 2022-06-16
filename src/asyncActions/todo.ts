@@ -1,13 +1,9 @@
-import {
-  addTask,
-  removeTask,
-  changeTask,
-  TodoAction,
-} from "../store/todoReducer";
+import { addTask, removeTask, changeTask } from "../store/todoReducer";
+import { type ActionType } from "../store";
 import { Dispatch } from "redux";
 
 export const fetchTodos = () => {
-  return function (dispatch: Dispatch<TodoAction>) {
+  return function (dispatch: Dispatch<ActionType>) {
     fetch("https://jsonplaceholder.typicode.com/posts/1/comments")
       .then((response) => {
         return response.json();
@@ -22,7 +18,7 @@ export const fetchTodos = () => {
 };
 
 export const removeTodo = (id: number) => {
-  return function (dispatch: Dispatch<TodoAction>) {
+  return function (dispatch: Dispatch<ActionType>) {
     fetch(`https://jsonplaceholder.typicode.com/posts/${id}`, {
       method: "DELETE",
       headers: {
@@ -38,7 +34,7 @@ export const removeTodo = (id: number) => {
 };
 
 export const updateTodo = (id: number, description: string) => {
-  return function (dispatch: Dispatch<TodoAction>) {
+  return function (dispatch: Dispatch<ActionType>) {
     fetch(`https://jsonplaceholder.typicode.com/posts/${id}`, {
       method: "PUT",
       body: JSON.stringify({
