@@ -3,21 +3,34 @@ import "./TodoItem.css";
 import LikePic from "../../assets/favorite.svg";
 import MenuPic from "../../assets/menu.svg";
 import Modal from "../Modal";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import {
   addLike,
   resetLike,
   addComplited,
   resetComplited,
-  removeTask,
+  changeTask,
 } from "../../store/todoReducer";
+import { updateTodo } from "../../asyncActions/todo";
 
-function TodoItem({ id, description, complited, like }) {
+interface TodoItemProps {
+  id: number;
+  description: string;
+  complited: boolean;
+  like: boolean;
+}
+
+const TodoItem: React.FC<TodoItemProps> = ({
+  id,
+  description,
+  complited,
+  like,
+}) => {
   const dispatch = useDispatch();
   const [show, setShow] = useState(false);
   const [edit, setEdit] = useState(false);
-  // const allTasks = useSelector((store) => store.todo);
-  // let task = Object.values(allTasks).find((item) => item.id === Number(id));
+  const [editedDescription, setEditedDescription] = useState(description);
+
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const onChangeLike = () => {
@@ -54,9 +67,11 @@ function TodoItem({ id, description, complited, like }) {
     setShow(false);
   };
 
-  const onCloseEdit = (e) => {
+  const onCloseEdit = (e: any) => {
     if (e.key === "Enter") {
       setEdit(false);
+      // @ts-ignore
+      dispatch(updateTodo(id, editedDescription));
     }
   };
 
@@ -65,13 +80,15 @@ function TodoItem({ id, description, complited, like }) {
       <input
         autoFocus
         id="edit"
-        value={description}
+        value={editedDescription}
         onKeyPress={onCloseEdit}
+        onChange={(e) => setEditedDescription(e.target.value)}
       ></input>
     );
   } else {
     return (
       <div className="todo-item">
+        {show ? <div className="overlay" onClick={onShowMenu} /> : null}
         {complited ? <p id="complited">{description}</p> : <p>{description}</p>}
         <div className="icons">
           {like ? (
@@ -123,6 +140,6 @@ function TodoItem({ id, description, complited, like }) {
       </div>
     );
   }
-}
+};
 
 export default TodoItem;

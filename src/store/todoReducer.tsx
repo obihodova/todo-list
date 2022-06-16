@@ -1,4 +1,14 @@
-const defaultState = {};
+export type TodoState = Record<
+  string,
+  {
+    id: number;
+    description: string;
+    complited: boolean;
+    like: boolean;
+  }
+>;
+
+const defaultState: TodoState = {};
 
 export const ADD_TASK = "ADD_TASK";
 export const CHANGE_TASK = "CHANGE_TASK";
@@ -8,7 +18,12 @@ export const ADD_COMPLITED = "ADD_COMPLITED";
 export const RESET_COMPLITED = "RESET_COMPLITED";
 export const REMOVE_TASK = "REMOVE_TASK";
 
-export const todoReducer = (state = defaultState, action) => {
+export type TodoAction = {
+  type: string;
+  payload?: any;
+};
+
+export const todoReducer = (state = defaultState, action: TodoAction) => {
   switch (action.type) {
     case ADD_TASK: {
       const { id, description } = action.payload;
@@ -76,7 +91,7 @@ export const todoReducer = (state = defaultState, action) => {
 
     case REMOVE_TASK: {
       const { id } = action.payload;
-      console.log(id)
+
       const newTodo = { ...state };
       delete newTodo[id];
       return {
@@ -89,37 +104,37 @@ export const todoReducer = (state = defaultState, action) => {
   }
 };
 
-export const addTask = (id, description) => ({
+export const addTask = (id: number, description: string) => ({
   type: ADD_TASK,
   payload: { id, description },
 });
 
-export const chageTask = (id, description) => ({
+export const changeTask = (id: number, description: string) => ({
   type: CHANGE_TASK,
   payload: { id, description },
 });
 
-export const addLike = (id) => ({
+export const addLike = (id: number) => ({
   type: ADD_LIKE,
   payload: { id },
 });
 
-export const resetLike = (id) => ({
+export const resetLike = (id: number) => ({
   type: RESET_LIKE,
   payload: { id },
 });
 
-export const addComplited = (id) => ({
+export const addComplited = (id: number) => ({
   type: ADD_COMPLITED,
   payload: { id },
 });
 
-export const resetComplited = (id) => ({
+export const resetComplited = (id: number) => ({
   type: RESET_COMPLITED,
   payload: { id },
 });
 
-export const removeTask = (id) => ({
+export const removeTask = (id: number) => ({
   type: REMOVE_TASK,
   payload: { id },
 });

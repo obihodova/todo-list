@@ -1,15 +1,28 @@
 import React, { useState } from "react";
-import { removeTask } from "../../store/todoReducer" ;
+import { removeTodo } from "../../asyncActions/todo";
 import { useDispatch } from "react-redux";
 
 import "./Modal.css";
 
-const Modal = ({ visible = false, onClose, description, id }) => {
+interface ModalProps {
+  id: number;
+  description: string;
+  visible: boolean;
+  onClose: any;
+}
+
+const Modal: React.FC<ModalProps> = ({
+  visible = false,
+  onClose,
+  description,
+  id,
+}) => {
   const dispatch = useDispatch();
 
   const onHandleDelete = () => {
-    dispatch(removeTask(id));
-    console.log(id);
+    // @ts-ignore
+    dispatch(removeTodo(id));
+
     setIsModalOpen(false);
     return true;
   };

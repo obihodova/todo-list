@@ -3,7 +3,14 @@ const defaultState = { error: "" };
 export const ADD_ERROR = "ADD_ERROR";
 export const RESET_ERROR = "RESET_ERROR";
 
-export const errorReducer = (state = defaultState, action) => {
+
+interface errorAction {
+  type: string;
+  payload?: any;
+}
+
+
+export const errorReducer = (state = defaultState, action: errorAction) => {
   switch (action.type) {
     case ADD_ERROR: {
       const { value } = action.payload;
@@ -23,7 +30,7 @@ export const errorReducer = (state = defaultState, action) => {
   }
 };
 
-export const addError = (value) => ({
+export const addError = (value: string) => ({
   type: ADD_ERROR,
   payload: { value },
 });

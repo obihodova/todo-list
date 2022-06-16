@@ -3,11 +3,12 @@ import "./InputWindow.css";
 import { useDispatch, useSelector } from "react-redux";
 import { addTask } from "../../store/todoReducer" ; 
 import { addError, resetError } from "../../store/errorReducer" ;
+import { useTypedSelector } from "../../hooks/useTypedSelector"
 
 function InputWindow() {
   const [text, setText] = useState("");
   const dispatch = useDispatch();
-  const isError = useSelector((store) => store.error.error);
+  const isError = useTypedSelector((store) => store.error.error);
 
   const addTodo = () => {
     if (!isError && text.trim()) {
@@ -17,7 +18,7 @@ function InputWindow() {
     }
   };
 
-  const handleFormInput = (e) => {
+  const handleFormInput = (e: any) => {
     setText(e.target.value);
     if (e.target.value.length > 160) {
       dispatch(addError(e.target.value));
